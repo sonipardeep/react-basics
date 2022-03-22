@@ -5,11 +5,6 @@ import './index.css';
 
 
 ReactDOM.render(
-<h1>Hello React World12</h1>,
+<App />,
 document.getElementById('root')
 );
-
-
-if (module.hot) {
-module.hot.accept();
-}
