@@ -3,50 +3,98 @@ import './App.css';
 
 const list = [
 {
-title: 'React',
-url: 'https://facebook.github.io/react/',
-author: 'Jordan Walke',
-num_comments: 3,
-points: 4,
-objectID: 0,
+	title: 'React',
+	url: 'https://facebook.github.io/react/',
+	author: 'Jordan Walke',
+	num_comments: 3,
+	points: 4,
+	objectID: 0,
 },
 {
-title: 'Redux',
-url: 'https://github.com/reactjs/redux',
-author: 'Dan Abramov, Andrew Clar3k',
-num_comments: 2,
-points: 5,
-objectID: 1,
+	title: 'Redux',
+	url: 'https://github.com/reactjs/redux',
+	author: 'Dan Abramov, Andrew Clar3k',
+	num_comments: 2,
+	points: 5,
+	objectID: 1,
 },
 ];
 
 class App extends Component {
 
 	constructor(props) {
-	super(props);
-	this.state = {
-	list,
-	};
+		super(props);
+		this.state = {
+			list,
+		};
+
+		this.onDismiss = this.onDismiss.bind(this);
 	}
 
-render() {
+	onDismiss(id) {
+	const isNotId = item => item.objectID !== id;
+	const updatedList = this.state.list.filter(isNotId);
+	this.setState({ list: updatedList });
+	}
 
-return (
-
-	<div className="App">
-{this.state.list.map(item=> 
-<div key={item.objectID}>
-<span>
-<a href={item.url}>{item.title}</a>
-</span>
-<span>{item.author}</span>
-<span>{item.num_comments}</span>
-<span>{item.points}</span>
-</div>
-)}
-	</div>
-
-);
+/*
+option-1
+onDismiss(id) {
+const updatedList = this.state.list.filter(function isNotId(item) {
+return item.objectID !== id;
+});
 }
+
+option-2
+
+onDismiss(id) {
+function isNotId(item) {
+return item.objectID !== id;
 }
-export default App;
+const updatedList = this.state.list.filter(isNotId);
+}
+
+option-3
+onDismiss(id) {
+const updatedList = this.state.list.filter(item => item.objectID !== id);
+}
+
+
+*/
+
+
+
+// isNotID returns all items ids which are not clicked...
+// filter functions gives all items except the clicked
+
+
+
+	render() {
+
+		return (
+
+			<div className="App">
+			{this.state.list.map(item=> 
+				<div key={item.objectID}>
+				<span>
+				<a href={item.url}>{item.title}</a>
+				</span>
+				<span>{item.author}</span>
+				<span>{item.num_comments}</span>
+				<span>{item.points}</span>
+				<span>
+				<button
+				onClick={() => this.onDismiss(item.objectID)}
+				type="button"
+				>
+				Dismiss
+				</button>
+				</span>
+				</div>
+				)}
+			</div>
+
+			);
+		}
+	}
+	export default App;
