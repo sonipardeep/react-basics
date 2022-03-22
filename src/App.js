@@ -3,6 +3,7 @@ import './App.css';
 class App extends Component {
 render() {
 var helloWorld = 'Welcome to the Road to learn React';	
+helloWorld = 'Bye Bye React';
 return (
 
 <div className="App">
