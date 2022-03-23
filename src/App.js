@@ -112,8 +112,7 @@ export default App;
 
 
 
-function Search({ value, onChange, children }) {
-return (
+const Search = ({ value, onChange, children }) =>
 <form>
 {children} <input
 type="text"
@@ -121,8 +120,6 @@ value={value}
 onChange={onChange}
 />
 </form>
-);
-}
 
 
 class Table extends Component {
