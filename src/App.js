@@ -112,8 +112,7 @@ export default App;
 
 
 
-function Search(props) {
-const { value, onChange, children } = props;
+function Search({ value, onChange, children }) {
 return (
 <form>
 {children} <input
